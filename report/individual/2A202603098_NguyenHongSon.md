@@ -52,9 +52,10 @@ Mỗi điểm bạn phân vân một dòng, nhất là phân vân giữa `v = 1`
 
 | Ảnh | Người / mặt | Điểm | Cờ đã chọn | Phân vân giữa | Lý do chọn |
 |---|---|---|---:|---|---|
-| | | | | | |
-| | | | | | |
-| | | | | | |
+| `000000521817.jpg` | Người áo ba lỗ | `left_ear` | 1 | `v = 1` và `v = 0` | Đầu nghiêng về phía camera, tai trái bị khuất sau đầu nhưng ước lượng được vị trí đối xứng qua sống mũi và mắt, nên chọn `v = 1`. |
+| `000000311300.jpg` | Cô gái trượt ván | `right_ankle` | 1 | `v = 1` và `v = 2` | Chân phải đi giày cao cổ che mất mắt cá, nhưng thấy rõ hướng cẳng chân nên ước lượng chắc chắn tâm khớp mắt cá trong giày, chọn `v = 1`. |
+| `face_301643.jpg` | Mặt đeo kính râm | `left_eye_upper`, `left_eye_lower` | 1 | `v = 1` và `v = 0` | Tròng kính đen che kín mắt không thấy mí, nhưng gọng kính định hình rõ hốc mắt, ước lượng chắc chắn theo gọng nên chọn `v = 1` theo guideline. |
+| `000000106051.jpg` | Người ở xa | `left_wrist` | 0 | `v = 1` và `v = 0` | Cánh tay bị vật cản phía trước che khuất hoàn toàn, không có góc tựa để suy đoán vị trí bàn tay nên đánh dấu `outside` (`v = 0`). |
 
 ## 4. Bảng tự review (CP3)
 
@@ -64,24 +65,24 @@ Mã lỗi dùng đúng một trong: `lr_swap`, `vis_flag`, `position`, `missing`
 
 | Ảnh | Người / mặt | Điểm | Mã lỗi | Ghi chú | Đã sửa? |
 |---|---|---|---|---|---|
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
+| `000000542160.jpg` | Người đứng giữa (#2) | `knee`, `ankle` | `ok` | Tư thế đứng hai chân hơi sát nhau, đã kiểm tra đúng chân trái bên phải ảnh và chân phải bên trái ảnh, không bị ngược. | — |
+| `000000521817.jpg` | Người áo xanh (#2) | `left_ankle`, `right_ankle` | `ok` | Người ngồi khoanh chân xếp bằng đối diện camera nên hai cẳng chân bắt chéo nhau tự nhiên, vị trí đặt khớp đúng. | — |
+| `000000518966.jpg` | Người đi bộ | Toàn thân | `ok` | Người quay lưng về camera, các điểm `left_*` đã nằm đúng phía bên trái ảnh. | — |
+| `000000311300.jpg` | 2 người trượt ván | `ankle` | `ok` | Hai người đứng tư thế một chân trước một chân sau trên ván, đường chân bắt chéo theo góc chụp xiên, không bị swap. | — |
+| `000000106051.jpg` | Người ở xa (#1) | `left_hip`, `right_hip` | `position` | Ban đầu đặt hông hơi cao theo cạp quần, đã zoom to và chỉnh lại đúng khớp xương chậu. | Có |
+| `face_301643.jpg` | Mặt kính râm | 4 điểm mắt | `ok` | 4 điểm mí mắt và khóe mắt đã bật `occluded` (`v = 1`), đặt đúng theo gọng kính. | — |
+| `face_145621.jpg` | Mặt nghiêng | `right_eye_inner` | `ok` | Mắt xa bị sống mũi che một phần khóe trong, đã căn đúng mép sống mũi. | — |
+| `face_562485.jpg` | Mặt tóc che | `lip_upper` | `position` | Điểm giữa môi trên bị lệch nhẹ sang phải do góc cười nhếch mép, đã kéo lại chính giữa viền môi. | Có |
 
 Tổng hợp số lỗi theo mã:
 
 | `lr_swap` | `vis_flag` | `position` | `missing` | `extra` | `ok` |
 |---:|---:|---:|---:|---:|---:|
-| | | | | | |
+|0 | 0|2 |0 | 0|6 |
 
 Điểm còn phân vân giữa `v = 1` và `v = 0` (ghi cả hai lựa chọn và lý do chọn):
 
-...
+- Ở ảnh 000000521817.jpg, điểm left_ear bị khuất sau đầu khi nhìn từ góc này: chọn v = 1 vì có thể căn theo đối xứng tai phải qua trục khuôn mặt; nếu áp dụng quy tắc khắt khe hơn không đoán điểm bị khuất hoàn toàn thì có thể chọn v = 0.
 
 ## 5. Kiểm file xuất và kết quả tự kiểm (CP4)
 
@@ -147,11 +148,11 @@ Nguồn ảnh: COCO val2017 / Wikimedia Commons.
 
 1. Lỗi bạn mắc nhiều nhất hôm nay, và cách bạn sẽ tránh ở dự án thật:
 
-   ...
+   Lỗi dễ mắc nhất là nhầm lẫn quy ước trái/phải (lr_swap) ở những người quay lưng hoặc đứng nghiêng. Ở dự án thật, cách khắc phục là luôn tự xác định hướng nhìn của nhân vật trước khi kéo khung, với người quay lưng thì lập tức hoán đổi vị trí cụm left_ sang bên trái ảnh trước rồi mới căn chỉnh từng khớp.
 
 2. Một quy tắc bạn đề xuất thêm vào guideline (kèm ảnh ví dụ nếu có):
 
-   ...
+   Đề xuất bổ sung quy định cụ thể đối với trường hợp trang phục rộng (quần ống rộng) che hoàn toàn đường nét của khớp gối: nếu dáng đứng thẳng và nhìn rõ cẳng chân/bàn chân bên dưới thì cho phép đặt v = 1 theo trục thẳng đứng; nếu người ngồi thụp hoặc mặc váy phồng không xác định được hướng gập của chân thì bắt buộc đánh dấu outside (v = 0) để tránh mỗi annotator ước lượng một kiểu.
 
 3. Nhãn của bạn đi vào model ở đâu? Chọn một lỗi bạn đã sửa và nói nó sẽ làm model học sai thế nào (heatmap, trọng số trong loss, hay bước lật ảnh):
 
