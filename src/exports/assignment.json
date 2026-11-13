@@ -1,0 +1,43 @@
+{
+ "mssv": "2A202603098",
+ "ten": "NguyenHongSon",
+ "pool_version": "d04-k5-v2",
+ "cvat_user": "ShirogonRyu",
+ "project": "d04-keypoint",
+ "persons": [
+  "000000205650.jpg",
+  "000000211458.jpg",
+  "000000261732.jpg",
+  "000000295358.jpg",
+  "000000336477.jpg",
+  "000000189365.jpg",
+  "000000461389.jpg",
+  "000000521817.jpg",
+  "000000311300.jpg",
+  "000000518966.jpg",
+  "000000106051.jpg",
+  "000000542160.jpg"
+ ],
+ "faces": [
+  "face_125051.jpg",
+  "face_204787.jpg",
+  "face_496353.jpg",
+  "face_145621.jpg",
+  "face_53580.jpg",
+  "face_380754.jpg",
+  "face_301643.jpg",
+  "face_562485.jpg"
+ ],
+ "tasks": {
+  "persons": {
+   "task_id": 12,
+   "job_id": 12,
+   "task_name": "persons-NguyenHongSon"
+  },
+  "faces": {
+   "task_id": 13,
+   "job_id": 13,
+   "task_name": "faces-NguyenHongSon"
+  }
+ }
+}
